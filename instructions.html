@@ -57,8 +57,14 @@
         .step-badge-3 { background: rgba(52,211,153,0.15); color: var(--accent-green); border: 1px solid rgba(52,211,153,0.3); }
         .step-badge-4 { background: rgba(251,146,60,0.15); color: var(--accent-orange); border: 1px solid rgba(251,146,60,0.3); }
         .step-badge-5 { background: rgba(79,125,249,0.15); color: var(--accent-blue); border: 1px solid rgba(79,125,249,0.3); }
+        .step-badge-trouble { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
 
         .step-heading { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; }
+
+        .trouble-item { margin-bottom: 20px; }
+        .trouble-item:last-child { margin-bottom: 0; }
+        .trouble-label { font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+        .trouble-fix { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
 
         .content p { font-size: 1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; }
         .content p strong { color: var(--text-primary); font-weight: 600; }
@@ -126,88 +132,86 @@
 
     <div class="page-header">
         <span class="section-label">Instructions</span>
-        <h1>Getting started with FAP</h1>
-        <p>From download to your first scheduled post. The whole process takes about 10&nbsp;minutes.</p>
+        <h1>How to set up Facebook Auto&nbsp;Poster</h1>
+        <p>The whole setup takes about 20&ndash;30 minutes. No coding. No developer accounts. Just follow the steps below.</p>
     </div>
 
     <div class="content">
         <div class="instruction-block">
             <div class="step-header">
                 <span class="step-badge step-badge-1">1</span>
-                <h2 class="step-heading">Download &amp; Install</h2>
+                <h2 class="step-heading">Download and Install</h2>
             </div>
-            <p>After purchasing, you'll get a download link for your operating system (Mac or Windows).</p>
-            <ul>
-                <li><strong>Windows:</strong> Run the installer (<code>FacebookAutoPoster_Setup.exe</code>). Click Next a few times. A shortcut will appear on your Desktop.</li>
-                <li><strong>Mac:</strong> Unzip the download. You'll get <code>Facebook Auto Poster.app</code>. Drag it to your Applications folder or just double-click it.</li>
-            </ul>
-            <div class="tip-box">
-                <strong>Note for Mac users:</strong> The first time you open the app, macOS may say it's from an "unidentified developer." Right-click the app, select "Open," then click "Open" again on the dialog. You only need to do this once.
-            </div>
+            <p>After purchasing, download FAP from your account dashboard. Open the program and follow the on-screen setup prompts. That's the hard part. It wasn't that hard.</p>
         </div>
 
         <div class="instruction-block">
             <div class="step-header">
                 <span class="step-badge step-badge-2">2</span>
-                <h2 class="step-heading">Activate your license</h2>
+                <h2 class="step-heading">Connect Your Facebook Page</h2>
             </div>
-            <p>When you first open FAP, it'll ask for your license key. This is the key you received in your purchase confirmation email from our store.</p>
-            <ol>
-                <li>Copy your license key from your email</li>
-                <li>Paste it into the activation field</li>
-                <li>Click <strong>Activate</strong></li>
-            </ol>
-            <p>That's it. The app will verify your subscription and unlock.</p>
+            <p>Click <strong>"Connect Facebook"</strong> inside the app. Log in with the Facebook account that manages your page. Select which page(s) you want FAP to post to. Grant the necessary permissions when prompted.</p>
+            <p>FAP only needs permission to post on your behalf. We don't read your messages, access your personal profile, or do anything weird.</p>
         </div>
 
         <div class="instruction-block">
             <div class="step-header">
                 <span class="step-badge step-badge-3">3</span>
-                <h2 class="step-heading">Get your content ready</h2>
+                <h2 class="step-heading">Use the Reddit Image Scraper</h2>
             </div>
-            <p>You need a folder of images on your computer. This is the content FAP will post to your page. You can use any images you want, but the fastest way to build a library is the <strong>Reddit image scraper</strong> (included with your purchase).</p>
+            <p>Go to the Scraper tab inside the app.</p>
             <ol>
-                <li>Open the Reddit scraper</li>
-                <li>Paste in a subreddit URL (e.g. <code>https://reddit.com/r/NatureIsFuckingLit</code>)</li>
-                <li>Pick a filter: <strong>Top All Time</strong>, <strong>Top Monthly</strong>, <strong>Top Weekly</strong>, <strong>Hot</strong>, or <strong>New</strong></li>
-                <li>Set how many images you want</li>
-                <li>Click scrape and let it run</li>
+                <li>Paste the URL of any subreddit (example: <code>reddit.com/r/pugs</code>)</li>
+                <li>Choose how many images you want to pull (up to 1,000)</li>
+                <li>Pick your filter: <strong>Top All Time</strong>, <strong>Top Monthly</strong>, <strong>Top Weekly</strong>, <strong>Hot</strong>, or <strong>New</strong></li>
+                <li>Click <strong>Scrape</strong></li>
             </ol>
+            <p>The images will download to a folder inside the app.</p>
             <div class="tip-box">
-                <strong>Important:</strong> Screen your images before posting. Remove anything low quality, watermarked, or that could violate Facebook's community standards. It only takes a few minutes and saves you headaches later.
+                <strong>Important:</strong> Review the images before scheduling. Remove anything you don't want posted.
             </div>
         </div>
 
         <div class="instruction-block">
             <div class="step-header">
                 <span class="step-badge step-badge-4">4</span>
-                <h2 class="step-heading">Connect your Facebook page</h2>
+                <h2 class="step-heading">Schedule Your Posts</h2>
             </div>
-            <p>Inside FAP, click <strong>"+ Add Page"</strong> in the sidebar. This opens a Facebook login window.</p>
+            <p>Go to the Scheduler tab.</p>
             <ol>
-                <li>Log in with the Facebook account that manages your page</li>
-                <li>Grant the requested permissions (FAP needs permission to post to your page)</li>
-                <li>Select which page(s) you want to connect</li>
+                <li>Select the folder of images you want to post</li>
+                <li>Choose your posting times (example: 8:30am and 11:45am daily)</li>
+                <li>Set your start date and how many days you want to schedule</li>
+                <li>Click <strong>Schedule</strong></li>
             </ol>
-            <p>Your connected pages will appear in the sidebar. You can add as many pages as you want.</p>
+            <p>Done. FAP will post automatically at the times you selected. You can check the dashboard anytime to see what's been posted and what's coming up.</p>
         </div>
 
         <div class="instruction-block">
             <div class="step-header">
                 <span class="step-badge step-badge-5">5</span>
-                <h2 class="step-heading">Set your schedule &amp; go</h2>
+                <h2 class="step-heading">Ongoing Use</h2>
             </div>
-            <p>For each page, you'll configure:</p>
-            <ul>
-                <li><strong>Media folder:</strong> Point it to the folder of images you prepared in Step 3</li>
-                <li><strong>Post times:</strong> Add the times you want posts to go out each day (e.g. 9:00 AM, 12:00 PM, 6:00 PM)</li>
-                <li><strong>Posting days:</strong> How many days into the future to schedule</li>
-                <li><strong>Captions:</strong> Choose auto-generated captions, custom captions from a file, or no captions</li>
-            </ul>
-            <p>Once everything's set, click <strong>"Schedule Next Batch"</strong> and FAP will schedule your posts across the days and times you selected. You'll see a progress bar as it works.</p>
-            <p>When it's done, your posts are scheduled directly on Facebook. They'll go out on time even if your computer is off. You're done.</p>
-            <div class="tip-box">
-                <strong>Pro tip:</strong> Facebook allows scheduling up to 30 days out. When your current batch is running low, open FAP and schedule the next batch. The whole process takes about 2 minutes once your content folder is ready.
+            <p>When your scheduled posts run out, just scrape more content and schedule another batch. The whole process takes about 15&ndash;20 minutes every few weeks.</p>
+            <p>If any posts fail, the dashboard will show you which ones. You can retry them with one click.</p>
+        </div>
+
+        <div class="instruction-block">
+            <div class="step-header">
+                <span class="step-badge step-badge-trouble">!</span>
+                <h2 class="step-heading">Troubleshooting</h2>
+            </div>
+            <div class="trouble-item">
+                <p class="trouble-label">Posts aren't going through</p>
+                <p class="trouble-fix">Make sure your Facebook connection is still active. Facebook occasionally requires you to re-authorize apps. Reconnect inside FAP and reschedule.</p>
+            </div>
+            <div class="trouble-item">
+                <p class="trouble-label">Images aren't scraping</p>
+                <p class="trouble-fix">Double check that the subreddit URL is correct and that the subreddit actually has image posts. Some subreddits are mostly text.</p>
+            </div>
+            <div class="trouble-item">
+                <p class="trouble-label">Something else is broken</p>
+                <p class="trouble-fix">Email us at <strong>[support email coming soon]</strong>. We'll help you fix it. That's what the 7-day guarantee is for.</p>
             </div>
         </div>
     </div>
