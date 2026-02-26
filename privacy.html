@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Facebook Auto Poster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0a0f; --bg-card: #141420;
+            --border-subtle: rgba(255,255,255,0.06); --border-medium: rgba(255,255,255,0.1);
+            --text-primary: #f0f0f5; --text-secondary: #9898b0; --text-tertiary: #5e5e78;
+            --accent-blue: #4f7df9; --accent-blue-hover: #6b93ff;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+            --radius-sm: 8px; --max-width: 1120px;
+        }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-main); background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        a { color: var(--accent-blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; background: rgba(10,10,15,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }
+        .nav-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; color: var(--text-primary); }
+        .nav-logo img { height: 32px; width: auto; }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; text-decoration: none; }
+        .nav-links a:hover { color: var(--text-primary); text-decoration: none; }
+        .nav-cta { position: relative; }
+        .nav-cta-btn { display: inline-flex; align-items: center; padding: 8px 20px; background: var(--accent-blue); color: #fff; font-size: 0.85rem; font-weight: 600; border-radius: var(--radius-sm); transition: background 0.2s; text-decoration: none; }
+        .nav-cta-btn:hover { background: var(--accent-blue-hover); text-decoration: none; }
+        .nav-coming-soon { position: absolute; top: -8px; right: -12px; background: #fb923c; color: #000; font-size: 0.55rem; font-weight: 700; padding: 2px 6px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
+        .nav-mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+        .nav-mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--text-secondary); border-radius: 2px; }
+
+        .page-header { padding: 140px 24px 60px; max-width: var(--max-width); margin: 0 auto; }
+        .page-header .section-label { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+        .page-header h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px; }
+        .page-header .last-updated { font-size: 0.9rem; color: var(--text-tertiary); }
+
+        .content { max-width: 720px; padding: 0 24px 100px; margin: 0 auto; }
+        .content p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; }
+        .content h2 { font-size: 1.2rem; font-weight: 700; margin: 40px 0 12px; letter-spacing: -0.02em; color: var(--text-primary); }
+        .content ul { margin: 12px 0 16px; padding-left: 24px; }
+        .content li { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 6px; }
+
+        .footer { padding: 40px 24px; border-top: 1px solid var(--border-subtle); }
+        .footer-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .footer-copy { font-size: 0.82rem; color: var(--text-tertiary); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { font-size: 0.82rem; color: var(--text-tertiary); transition: color 0.2s; text-decoration: none; }
+        .footer-links a:hover { color: var(--text-secondary); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(10,10,15,0.97); backdrop-filter: blur(20px); flex-direction: column; padding: 24px; gap: 20px; border-bottom: 1px solid var(--border-subtle); }
+            .nav-links.open { display: flex; }
+            .nav-mobile-toggle { display: flex; }
+            .nav-cta { width: 100%; }
+            .nav-cta-btn { width: 100%; justify-content: center; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><img src="assets/logo.jpg" alt="Facebook Auto Poster"></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/">Home</a>
+                <a href="about.html">About</a>
+                <a href="instructions.html">Instructions</a>
+                <div class="nav-cta">
+                    <a href="#" class="nav-cta-btn">Get Started</a>
+                    <span class="nav-coming-soon">Coming Soon</span>
+                </div>
+            </div>
+            <div class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <span class="section-label">Legal</span>
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last updated: February 25, 2026</p>
+    </div>
+
+    <div class="content">
+        <p>Facebook Auto Poster ("FAP," "we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our desktop application and website.</p>
+
+        <h2>Information We Collect</h2>
+        <p>We collect the minimum information necessary to provide our service:</p>
+        <ul>
+            <li><strong>License key:</strong> Used to verify your active subscription.</li>
+            <li><strong>Facebook access tokens:</strong> Generated when you connect a Facebook page through Facebook's official OAuth flow. These tokens are stored locally on your computer and are used solely to schedule posts to your connected pages.</li>
+            <li><strong>Page information:</strong> The name and ID of Facebook pages you choose to connect, stored locally on your device.</li>
+            <li><strong>Scheduling data:</strong> Your posting schedule preferences (times, days), stored locally on your device.</li>
+        </ul>
+
+        <h2>How We Use Your Information</h2>
+        <ul>
+            <li><strong>License verification:</strong> Your license key is sent to our server to verify your subscription status. No other data is transmitted to our servers.</li>
+            <li><strong>Facebook posting:</strong> Your Facebook access token is used locally by the app to communicate directly with Facebook's API to schedule posts on your behalf.</li>
+        </ul>
+
+        <h2>Data Storage</h2>
+        <p>All of your data (Facebook tokens, page information, scheduling preferences, and image files) is stored locally on your computer. We do not upload, store, or have access to your Facebook credentials, tokens, or content on our servers.</p>
+        <p>The only communication between the app and our servers is license key verification.</p>
+
+        <h2>Third-Party Services</h2>
+        <p>Our service interacts with the following third-party services:</p>
+        <ul>
+            <li><strong>Facebook (Meta Platforms, Inc.):</strong> We use Facebook's Graph API to schedule posts to your pages. Your use of this feature is subject to <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Facebook's Data Policy</a>.</li>
+            <li><strong>LemonSqueezy:</strong> Our payment processor. Handles all billing and subscription management. Subject to <a href="https://www.lemonsqueezy.com/privacy" target="_blank" rel="noopener">LemonSqueezy's Privacy Policy</a>.</li>
+        </ul>
+
+        <h2>Data We Do NOT Collect</h2>
+        <ul>
+            <li>Your Facebook username or password</li>
+            <li>Your personal Facebook profile data</li>
+            <li>Content of your posts or images</li>
+            <li>Analytics or usage tracking data</li>
+            <li>Cookies or browser fingerprints</li>
+        </ul>
+
+        <h2>Data Deletion</h2>
+        <p>Since all data is stored locally on your computer, you can delete it at any time by uninstalling the application and removing its data folder. If you cancel your subscription, no data remains on our servers beyond the fact that a license key was issued.</p>
+
+        <h2>Children's Privacy</h2>
+        <p>Our service is not intended for individuals under the age of 18. We do not knowingly collect information from children.</p>
+
+        <h2>Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "Last updated" date.</p>
+
+        <h2>Contact</h2>
+        <p>If you have questions about this Privacy Policy, contact us at <a href="mailto:support@facebook-auto-poster.com">support@facebook-auto-poster.com</a>.</p>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-copy">&copy; 2026 Facebook Auto Poster. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — Facebook Auto Poster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0a0f; --bg-card: #141420;
+            --border-subtle: rgba(255,255,255,0.06); --border-medium: rgba(255,255,255,0.1);
+            --text-primary: #f0f0f5; --text-secondary: #9898b0; --text-tertiary: #5e5e78;
+            --accent-blue: #4f7df9; --accent-blue-hover: #6b93ff;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+            --radius-sm: 8px; --max-width: 1120px;
+        }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-main); background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        a { color: var(--accent-blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; background: rgba(10,10,15,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }
+        .nav-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; color: var(--text-primary); }
+        .nav-logo img { height: 32px; width: auto; }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; text-decoration: none; }
+        .nav-links a:hover { color: var(--text-primary); text-decoration: none; }
+        .nav-cta { position: relative; }
+        .nav-cta-btn { display: inline-flex; align-items: center; padding: 8px 20px; background: var(--accent-blue); color: #fff; font-size: 0.85rem; font-weight: 600; border-radius: var(--radius-sm); transition: background 0.2s; text-decoration: none; }
+        .nav-cta-btn:hover { background: var(--accent-blue-hover); text-decoration: none; }
+        .nav-coming-soon { position: absolute; top: -8px; right: -12px; background: #fb923c; color: #000; font-size: 0.55rem; font-weight: 700; padding: 2px 6px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
+        .nav-mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+        .nav-mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--text-secondary); border-radius: 2px; }
+
+        .page-header { padding: 140px 24px 60px; max-width: var(--max-width); margin: 0 auto; }
+        .page-header .section-label { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+        .page-header h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px; }
+        .page-header .last-updated { font-size: 0.9rem; color: var(--text-tertiary); }
+
+        .content { max-width: 720px; padding: 0 24px 100px; margin: 0 auto; }
+        .content p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; }
+        .content h2 { font-size: 1.2rem; font-weight: 700; margin: 40px 0 12px; letter-spacing: -0.02em; color: var(--text-primary); }
+        .content ul, .content ol { margin: 12px 0 16px; padding-left: 24px; }
+        .content li { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 6px; }
+
+        .footer { padding: 40px 24px; border-top: 1px solid var(--border-subtle); }
+        .footer-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .footer-copy { font-size: 0.82rem; color: var(--text-tertiary); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { font-size: 0.82rem; color: var(--text-tertiary); transition: color 0.2s; text-decoration: none; }
+        .footer-links a:hover { color: var(--text-secondary); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(10,10,15,0.97); backdrop-filter: blur(20px); flex-direction: column; padding: 24px; gap: 20px; border-bottom: 1px solid var(--border-subtle); }
+            .nav-links.open { display: flex; }
+            .nav-mobile-toggle { display: flex; }
+            .nav-cta { width: 100%; }
+            .nav-cta-btn { width: 100%; justify-content: center; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><img src="assets/logo.jpg" alt="Facebook Auto Poster"></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/">Home</a>
+                <a href="about.html">About</a>
+                <a href="instructions.html">Instructions</a>
+                <div class="nav-cta">
+                    <a href="#" class="nav-cta-btn">Get Started</a>
+                    <span class="nav-coming-soon">Coming Soon</span>
+                </div>
+            </div>
+            <div class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <span class="section-label">Legal</span>
+        <h1>Terms of Service</h1>
+        <p class="last-updated">Last updated: February 25, 2026</p>
+    </div>
+
+    <div class="content">
+        <p>By using Facebook Auto Poster ("FAP," "the Service," "we," "us"), you agree to the following terms. If you don't agree, don't use the service.</p>
+
+        <h2>1. What the Service Does</h2>
+        <p>Facebook Auto Poster is a desktop application that schedules image posts to Facebook pages using Facebook's official Graph API. It also includes a Reddit image scraping tool for content collection.</p>
+
+        <h2>2. Subscription &amp; Payment</h2>
+        <p>The service costs $29.99 per month, billed through LemonSqueezy. Your subscription renews automatically each month until you cancel. You can cancel at any time through your LemonSqueezy account.</p>
+        <p>If your subscription lapses, the app will stop working until you reactivate.</p>
+
+        <h2>3. Money Back Guarantee</h2>
+        <p>If you're unable to get the service working within 7 days of purchase and we can't resolve the issue for you, you're entitled to a full refund. Contact us at <a href="mailto:support@facebook-auto-poster.com">support@facebook-auto-poster.com</a> to request a refund.</p>
+
+        <h2>4. Your Responsibilities</h2>
+        <p>You are responsible for:</p>
+        <ul>
+            <li>Ensuring the content you post complies with Facebook's <a href="https://transparency.meta.com/policies/community-standards/" target="_blank" rel="noopener">Community Standards</a> and Terms of Service.</li>
+            <li>Having the right to post the images you use. We provide a tool; what you post with it is your responsibility.</li>
+            <li>Keeping your license key confidential. One license per user.</li>
+            <li>Complying with all applicable laws regarding the content you post.</li>
+        </ul>
+
+        <h2>5. What We're NOT Responsible For</h2>
+        <ul>
+            <li>Content you post using the service. You choose what goes on your page.</li>
+            <li>Facebook changing their API, policies, or terms in a way that affects the service.</li>
+            <li>Your Facebook page being restricted or banned for content violations.</li>
+            <li>Reddit content that may be copyrighted or otherwise restricted.</li>
+            <li>Temporary service interruptions due to Facebook API outages.</li>
+        </ul>
+
+        <h2>6. Acceptable Use</h2>
+        <p>Don't use FAP to:</p>
+        <ul>
+            <li>Post spam, illegal content, or content that violates Facebook's policies</li>
+            <li>Harass, threaten, or target individuals</li>
+            <li>Share your license key or resell access</li>
+            <li>Reverse engineer, decompile, or modify the software</li>
+            <li>Use the service for any purpose that violates applicable law</li>
+        </ul>
+        <p>We reserve the right to revoke your license if you violate these terms.</p>
+
+        <h2>7. Intellectual Property</h2>
+        <p>The Facebook Auto Poster software, branding, and website are our property. Your subscription gives you a license to use the software for its intended purpose. It doesn't give you ownership of any part of it.</p>
+
+        <h2>8. Limitation of Liability</h2>
+        <p>The service is provided "as is." We do our best to keep it working, but we make no guarantees about uptime, availability, or compatibility with future Facebook API changes. Our total liability is limited to the amount you've paid us in the last 30 days.</p>
+
+        <h2>9. Changes to These Terms</h2>
+        <p>We may update these terms from time to time. If we make significant changes, we'll update the "Last updated" date at the top of this page. Continued use of the service after changes constitutes acceptance.</p>
+
+        <h2>10. Contact</h2>
+        <p>Questions about these terms? Contact us at <a href="mailto:support@facebook-auto-poster.com">support@facebook-auto-poster.com</a>.</p>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-copy">&copy; 2026 Facebook Auto Poster. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

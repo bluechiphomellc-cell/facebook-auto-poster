@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Auto Poster — Automate Your Facebook Page</title>
+    <meta name="description" content="Facebook Auto Poster scrapes content, writes captions, and schedules posts to your Facebook page automatically. Set it up once. It runs for weeks.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #0f0f18;
+            --bg-card: #141420;
+            --bg-card-hover: #1a1a2a;
+            --bg-accent: #1c1c30;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-medium: rgba(255, 255, 255, 0.1);
+
+            --text-primary: #f0f0f5;
+            --text-secondary: #9898b0;
+            --text-tertiary: #5e5e78;
+
+            --accent-blue: #4f7df9;
+            --accent-blue-hover: #6b93ff;
+            --accent-blue-glow: rgba(79, 125, 249, 0.15);
+            --accent-green: #34d399;
+            --accent-green-glow: rgba(52, 211, 153, 0.1);
+            --accent-purple: #a78bfa;
+            --accent-orange: #fb923c;
+
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+
+            --max-width: 1120px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 24px;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-logo img {
+            height: 32px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            position: relative;
+        }
+
+        .nav-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 20px;
+            background: var(--accent-blue);
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            transition: background 0.2s, transform 0.15s;
+            cursor: pointer;
+        }
+
+        .nav-cta-btn:hover {
+            background: var(--accent-blue-hover);
+            transform: translateY(-1px);
+        }
+
+        .nav-coming-soon {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: var(--accent-orange);
+            color: #000;
+            font-size: 0.55rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .nav-mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-mobile-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text-secondary);
+            border-radius: 2px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        /* ============================================
+           HERO
+           ============================================ */
+        .hero {
+            padding: 160px 24px 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(ellipse, var(--accent-blue-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 780px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-medium);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.035em;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(1.05rem, 2vw, 1.2rem);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 620px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: var(--accent-blue);
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            transition: all 0.25s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .hero-cta:hover {
+            background: var(--accent-blue-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(79, 125, 249, 0.3);
+        }
+
+        .hero-cta-arrow {
+            transition: transform 0.2s;
+        }
+
+        .hero-cta:hover .hero-cta-arrow {
+            transform: translateX(3px);
+        }
+
+        .hero-guarantee {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           SECTION UTILITIES
+           ============================================ */
+        .section {
+            padding: 100px 24px;
+            position: relative;
+        }
+
+        .section-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 560px;
+            line-height: 1.7;
+        }
+
+        .divider {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            height: 1px;
+            background: var(--border-subtle);
+        }
+
+        /* ============================================
+           HOW IT WORKS
+           ============================================ */
+        .how-it-works {
+            background: var(--bg-secondary);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            transition: border-color 0.3s, transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card:hover {
+            border-color: var(--border-medium);
+            transform: translateY(-4px);
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+        }
+
+        .step-card:nth-child(1)::before { background: var(--accent-blue); }
+        .step-card:nth-child(2)::before { background: var(--accent-green); }
+        .step-card:nth-child(3)::before { background: var(--accent-purple); }
+
+        .step-number {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
+        }
+
+        .step-card:nth-child(1) .step-number { color: var(--accent-blue); }
+        .step-card:nth-child(2) .step-number { color: var(--accent-green); }
+        .step-card:nth-child(3) .step-number { color: var(--accent-purple); }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            letter-spacing: -0.02em;
+        }
+
+        .step-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .step-note {
+            display: inline-block;
+            margin-top: 14px;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            font-style: italic;
+        }
+
+        /* ============================================
+           WHY IT WORKS
+           ============================================ */
+        .why-it-works {
+            background: var(--bg-primary);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .why-card {
+            padding: 36px 32px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            transition: border-color 0.3s;
+        }
+
+        .why-card:hover {
+            border-color: var(--border-medium);
+        }
+
+        .why-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .why-card:nth-child(1) .why-icon {
+            background: rgba(251, 146, 60, 0.1);
+            border: 1px solid rgba(251, 146, 60, 0.2);
+        }
+
+        .why-card:nth-child(2) .why-icon {
+            background: rgba(79, 125, 249, 0.1);
+            border: 1px solid rgba(79, 125, 249, 0.2);
+        }
+
+        .why-card:nth-child(3) .why-icon {
+            background: rgba(52, 211, 153, 0.1);
+            border: 1px solid rgba(52, 211, 153, 0.2);
+        }
+
+        .why-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+        }
+
+        .why-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* ============================================
+           PRICING
+           ============================================ */
+        .pricing {
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .pricing-box {
+            max-width: 540px;
+            margin: 50px auto 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-xl);
+            padding: 56px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+        }
+
+        .pricing-amount {
+            font-size: 3.6rem;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .pricing-period {
+            font-size: 1rem;
+            color: var(--text-tertiary);
+            margin-bottom: 28px;
+        }
+
+        .pricing-desc {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+
+        .pricing-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            background: var(--accent-blue);
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            transition: all 0.25s;
+            cursor: pointer;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .pricing-cta:hover {
+            background: var(--accent-blue-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(79, 125, 249, 0.3);
+        }
+
+        .pricing-guarantee {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            line-height: 1.6;
+        }
+
+        .pricing-features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .pricing-feature-check {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-green-glow);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .pricing-feature-check svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* ============================================
+           FAQ
+           ============================================ */
+        .faq {
+            background: var(--bg-primary);
+        }
+
+        .faq-grid {
+            margin-top: 60px;
+            max-width: 760px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 0;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            gap: 16px;
+            transition: color 0.2s;
+        }
+
+        .faq-question:hover {
+            color: var(--accent-blue);
+        }
+
+        .faq-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+
+        .faq-answer-inner {
+            padding-bottom: 24px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            padding: 40px 24px;
+            border-top: 1px solid var(--border-subtle);
+            background: var(--bg-primary);
+        }
+
+        .footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-copy {
+            font-size: 0.82rem;
+            color: var(--text-tertiary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-size: 0.82rem;
+            color: var(--text-tertiary);
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-secondary);
+        }
+
+        /* ============================================
+           MOBILE
+           ============================================ */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 15, 0.97);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-mobile-toggle {
+                display: flex;
+            }
+
+            .nav-cta {
+                width: 100%;
+            }
+
+            .nav-cta-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 130px 24px 70px;
+            }
+
+            .steps-grid,
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-box {
+                padding: 40px 28px;
+            }
+
+            .pricing-amount {
+                font-size: 2.8rem;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .section {
+                padding: 70px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .step-card,
+            .why-card {
+                padding: 28px 24px;
+            }
+        }
+
+        /* ============================================
+           ANIMATIONS (scroll-triggered)
+           ============================================ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-up:nth-child(2) { transition-delay: 0.1s; }
+        .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAV ========== -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <img src="assets/logo.jpg" alt="Facebook Auto Poster">
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="/">Home</a>
+                <a href="about.html">About</a>
+                <a href="instructions.html">Instructions</a>
+                <div class="nav-cta">
+                    <a href="#" class="nav-cta-btn">
+                        Get Started
+                    </a>
+                    <span class="nav-coming-soon">Coming Soon</span>
+                </div>
+            </div>
+            <div class="nav-mobile-toggle" id="navToggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Now available for Mac &amp; Windows
+            </div>
+            <h1>Your Facebook page makes money while you do literally anything&nbsp;else.</h1>
+            <p>Facebook Auto Poster scrapes content, writes captions, and schedules posts to your page automatically. You set it up once. It runs for&nbsp;weeks.</p>
+            <a href="#" class="hero-cta">
+                Get Started &mdash; $29.99/mo
+                <svg class="hero-cta-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <p class="hero-guarantee">7-day money back guarantee. If we can't get it working, we will refund&nbsp;you.</p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ========== HOW IT WORKS ========== -->
+    <section class="section how-it-works">
+        <div class="section-inner">
+            <span class="section-label">How it works</span>
+            <h2 class="section-title">Three steps. That's it.</h2>
+            <div class="steps-grid">
+                <div class="step-card fade-up">
+                    <div class="step-number">01</div>
+                    <h3 class="step-title">Scrape</h3>
+                    <p class="step-desc">Use our built-in Reddit image scraper to pull content from any subreddit. Pick your filter (top all time, monthly, weekly, hot, new), set how many images you want, and let it run. Thousands of images in minutes.</p>
+                    <span class="step-note">(You should screen these for quality &amp; to avoid any potential Facebook Policy Violations)</span>
+                </div>
+                <div class="step-card fade-up">
+                    <div class="step-number">02</div>
+                    <h3 class="step-title">Connect</h3>
+                    <p class="step-desc">Download FAP, connect your Facebook page, and choose your posting schedule. Pick the days, pick the times. Done.</p>
+                </div>
+                <div class="step-card fade-up">
+                    <div class="step-number">03</div>
+                    <h3 class="step-title">Forget about it</h3>
+                    <p class="step-desc">Your page posts automatically on schedule. Go do something else. We mean it. Go outside. Start a hobby. Learn to cook. Your page is handled.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ========== WHY IT WORKS ========== -->
+    <section class="section why-it-works">
+        <div class="section-inner">
+            <span class="section-label">Why it works</span>
+            <h2 class="section-title">The math is simple.</h2>
+            <div class="why-grid">
+                <div class="why-card fade-up">
+                    <div class="why-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <p class="why-text"><strong>Posting manually takes 15&ndash;30 minutes a day</strong> if you're doing it right. That's 3+ hours a week. For one page.</p>
+                </div>
+                <div class="why-card fade-up">
+                    <div class="why-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4f7df9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <p class="why-text"><strong>FAP schedules weeks of posts in one sitting.</strong> We've tested it with 400 scheduled images across multiple pages. It just runs.</p>
+                </div>
+                <div class="why-card fade-up">
+                    <div class="why-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    </div>
+                    <p class="why-text"><strong>Consistent daily content builds reach, engagement, and eventually revenue.</strong> The only hard part used to be consistency. That part's solved now.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ========== PRICING ========== -->
+    <section class="section pricing">
+        <div class="section-inner">
+            <span class="section-label">Pricing</span>
+            <h2 class="section-title">One plan. Everything&nbsp;included.</h2>
+            <div class="pricing-box fade-up">
+                <div class="pricing-amount">$29.99</div>
+                <div class="pricing-period">per month</div>
+                <p class="pricing-desc">Everything included. The auto poster. The Reddit scraper. The instructions. No upsells. No "premium tier." Just the thing that does the&nbsp;thing.</p>
+                <div class="pricing-features">
+                    <div class="pricing-feature">
+                        <span class="pricing-feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Facebook Auto Poster app
+                    </div>
+                    <div class="pricing-feature">
+                        <span class="pricing-feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Reddit image scraper
+                    </div>
+                    <div class="pricing-feature">
+                        <span class="pricing-feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Step-by-step instructions
+                    </div>
+                    <div class="pricing-feature">
+                        <span class="pricing-feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Unlimited pages
+                    </div>
+                </div>
+                <a href="#" class="pricing-cta">Get Started</a>
+                <p class="pricing-guarantee">7-day money back guarantee. If we can't make it work for you, full&nbsp;refund.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ========== FAQ ========== -->
+    <section class="section faq">
+        <div class="section-inner">
+            <span class="section-label">FAQ</span>
+            <h2 class="section-title">Questions? Yeah, we figured.</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        What does FAP include?
+                        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                    </button>
+                    <div class="faq-answer"><div class="faq-answer-inner">The auto posting program, the Reddit image scraper, and a full instructions guide. Download it, connect your Facebook page, set your schedule, and you're posting.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        Do I need to know how to code?
+                        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                    </button>
+                    <div class="faq-answer"><div class="faq-answer-inner">No. If you can log into Facebook and follow written instructions, you can use this.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        What does the Reddit scraper do?
+                        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                    </button>
+                    <div class="faq-answer"><div class="faq-answer-inner">You paste in a subreddit link, tell it how many images you want, and pick a filter (top all time, top monthly, top weekly, new, or hot). It pulls the images for you. No Reddit account needed.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        How many posts can I schedule at once?
+                        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                    </button>
+                    <div class="faq-answer"><div class="faq-answer-inner">As many as you want. We've tested it with 400+ scheduled posts across multiple pages. The only limitation is Facebook's 30 day max for scheduled posts.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        What's the money back guarantee?
+                        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                    </button>
+                    <div class="faq-answer"><div class="faq-answer-inner">If for some reason it won't work for you, reach out within 7 days and if we can't fix it for you, you get a full refund. No weird conditions.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        Wait... is the abbreviation intentional?
+                        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                    </button>
+                    <div class="faq-answer"><div class="faq-answer-inner">We're a professional company. We would never. (Yes.)</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        Does FAP work on any Facebook page?
+                        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                    </button>
+                    <div class="faq-answer"><div class="faq-answer-inner">If you can post to it manually, FAP can post to it automatically.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        Can I use it on multiple pages?
+                        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                    </button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Yes. Connect as many pages as you want.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        What kind of pages does this work best for?
+                        <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                    </button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Content pages that post images. Memes, animals, nature, cars, food, you name it. If there's a subreddit for it, there's content for your page.</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-copy">&copy; 2026 Facebook Auto Poster. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== SCROLL ANIMATIONS ========== -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

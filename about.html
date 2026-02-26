@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Facebook Auto Poster</title>
+    <meta name="description" content="Facebook Auto Poster was built to solve one problem: posting consistently to Facebook pages takes too much time.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0a0f; --bg-secondary: #0f0f18; --bg-card: #141420;
+            --border-subtle: rgba(255,255,255,0.06); --border-medium: rgba(255,255,255,0.1);
+            --text-primary: #f0f0f5; --text-secondary: #9898b0; --text-tertiary: #5e5e78;
+            --accent-blue: #4f7df9; --accent-blue-hover: #6b93ff;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
+            --max-width: 1120px;
+        }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-main); background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; background: rgba(10,10,15,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }
+        .nav-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; }
+        .nav-logo img { height: 32px; width: auto; }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a.active { color: var(--text-primary); }
+        .nav-cta { position: relative; }
+        .nav-cta-btn { display: inline-flex; align-items: center; padding: 8px 20px; background: var(--accent-blue); color: #fff; font-size: 0.85rem; font-weight: 600; border-radius: var(--radius-sm); transition: background 0.2s; }
+        .nav-cta-btn:hover { background: var(--accent-blue-hover); }
+        .nav-coming-soon { position: absolute; top: -8px; right: -12px; background: #fb923c; color: #000; font-size: 0.55rem; font-weight: 700; padding: 2px 6px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
+        .nav-mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+        .nav-mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--text-secondary); border-radius: 2px; }
+
+        .page-header { padding: 140px 24px 60px; max-width: var(--max-width); margin: 0 auto; }
+        .page-header .section-label { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+        .page-header h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 20px; }
+
+        .content { max-width: 720px; padding: 0 24px 100px; margin: 0 auto; }
+        .content p { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 24px; }
+        .content p strong { color: var(--text-primary); font-weight: 600; }
+        .content h2 { font-size: 1.4rem; font-weight: 700; margin: 48px 0 16px; letter-spacing: -0.02em; }
+
+        .footer { padding: 40px 24px; border-top: 1px solid var(--border-subtle); }
+        .footer-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .footer-copy { font-size: 0.82rem; color: var(--text-tertiary); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { font-size: 0.82rem; color: var(--text-tertiary); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text-secondary); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(10,10,15,0.97); backdrop-filter: blur(20px); flex-direction: column; padding: 24px; gap: 20px; border-bottom: 1px solid var(--border-subtle); }
+            .nav-links.open { display: flex; }
+            .nav-mobile-toggle { display: flex; }
+            .nav-cta { width: 100%; }
+            .nav-cta-btn { width: 100%; justify-content: center; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><img src="assets/logo.jpg" alt="Facebook Auto Poster"></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/">Home</a>
+                <a href="about.html" class="active">About</a>
+                <a href="instructions.html">Instructions</a>
+                <div class="nav-cta">
+                    <a href="#" class="nav-cta-btn">Get Started</a>
+                    <span class="nav-coming-soon">Coming Soon</span>
+                </div>
+            </div>
+            <div class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <span class="section-label">About</span>
+        <h1>We built this because we needed&nbsp;it.</h1>
+    </div>
+
+    <div class="content">
+        <p>Running a Facebook page sounds easy until you actually have to post to it every day. Finding content, writing captions, scheduling posts&mdash;it adds up fast. Do that across multiple pages and it's a part-time job.</p>
+
+        <p><strong>Facebook Auto Poster was built to solve exactly that problem.</strong> We were running our own pages, spending hours each week just keeping them active. So we built a tool that does it automatically.</p>
+
+        <p>It started as a personal project. A script that scheduled posts from a folder of images. Then it got a Reddit scraper. Then it got a proper UI. Then other people wanted it. So here we are.</p>
+
+        <h2>What it actually does</h2>
+
+        <p>FAP connects to your Facebook page through Facebook's official API. You point it at a folder of images, set your posting schedule (which days, which times), and it handles the rest. Posts go out on time, every time, for as long as you have content queued up.</p>
+
+        <p>The Reddit scraper is the other half. Instead of spending hours finding content, you paste in a subreddit URL, pick a filter, set how many images you want, and it pulls them down. Thousands of images in minutes. You screen them for quality, drop them in a folder, and you've got weeks of content ready to go.</p>
+
+        <h2>Who it's for</h2>
+
+        <p>Anyone running a content page on Facebook. Meme pages, animal pages, nature photography, cars, food, motivation&mdash;if your page posts images and you're tired of doing it manually, this is for you.</p>
+
+        <p>You don't need to know how to code. You don't need any technical background. If you can follow written instructions and click buttons, you can use FAP.</p>
+
+        <h2>The business model</h2>
+
+        <p><strong>$29.99 per month. Everything included.</strong> The auto poster, the Reddit scraper, the instructions. No free tier with annoying limitations. No "premium" upsell. One price, full access, cancel anytime.</p>
+
+        <p>If it doesn't work for you, reach out within 7 days and we'll make it right or give you a full refund. We're not interested in keeping money from people who aren't getting value.</p>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-copy">&copy; 2026 Facebook Auto Poster. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
