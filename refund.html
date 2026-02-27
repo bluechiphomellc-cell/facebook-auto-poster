@@ -3,64 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About — Facebook Auto Poster</title>
-    <meta name="description" content="Facebook Auto Poster was built to solve one problem: posting consistently to Facebook pages takes too much time.">
+    <title>Refund Policy — Facebook Auto Poster</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <meta property="og:title" content="About — Facebook Auto Poster">
-    <meta property="og:description" content="We built this because we were tired of doing it by hand.">
+    <meta property="og:title" content="Refund Policy — Facebook Auto Poster">
     <meta property="og:image" content="https://facebook-auto-poster.com/assets/logo.png">
-    <meta property="og:url" content="https://facebook-auto-poster.com/about.html">
+    <meta property="og:url" content="https://facebook-auto-poster.com/refund.html">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg-primary: #0a0a0f; --bg-secondary: #0f0f18; --bg-card: #141420;
+            --bg-primary: #0a0a0f; --bg-card: #141420;
             --border-subtle: rgba(255,255,255,0.06); --border-medium: rgba(255,255,255,0.1);
             --text-primary: #f0f0f5; --text-secondary: #9898b0; --text-tertiary: #5e5e78;
             --accent-blue: #4f7df9; --accent-blue-hover: #6b93ff;
             --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
-            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
-            --max-width: 1120px;
+            --radius-sm: 8px; --max-width: 1120px;
         }
         html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
         body { font-family: var(--font-main); background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
-        a { color: inherit; text-decoration: none; }
+        a { color: var(--accent-blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
         .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; background: rgba(10,10,15,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }
         .nav-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
-        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; color: var(--text-primary); }
         .nav-logo img { height: 32px; width: auto; }
         .nav-links { display: flex; align-items: center; gap: 32px; }
-        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; }
-        .nav-links a:hover { color: var(--text-primary); }
-        .nav-links a.active { color: var(--text-primary); }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; text-decoration: none; }
+        .nav-links a:hover { color: var(--text-primary); text-decoration: none; }
         .nav-cta { position: relative; }
-        .nav-cta-btn { display: inline-flex; align-items: center; padding: 8px 20px; background: var(--accent-blue); color: #fff; font-size: 0.85rem; font-weight: 600; border-radius: var(--radius-sm); transition: background 0.2s; }
-        .nav-cta-btn:hover { background: var(--accent-blue-hover); }
+        .nav-cta-btn { display: inline-flex; align-items: center; padding: 8px 20px; background: var(--accent-blue); color: #fff; font-size: 0.85rem; font-weight: 600; border-radius: var(--radius-sm); transition: background 0.2s; text-decoration: none; }
+        .nav-cta-btn:hover { background: var(--accent-blue-hover); text-decoration: none; }
         .nav-coming-soon { position: absolute; top: -8px; right: -12px; background: #fb923c; color: #000; font-size: 0.55rem; font-weight: 700; padding: 2px 6px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
         .nav-mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
         .nav-mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--text-secondary); border-radius: 2px; }
 
         .page-header { padding: 140px 24px 60px; max-width: var(--max-width); margin: 0 auto; }
         .page-header .section-label { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
-        .page-header h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 20px; }
+        .page-header h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px; }
+        .page-header .last-updated { font-size: 0.9rem; color: var(--text-tertiary); }
 
         .content { max-width: 720px; padding: 0 24px 100px; margin: 0 auto; }
-        .content p { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 24px; }
-        .content p strong { color: var(--text-primary); font-weight: 600; }
-        .content h2 { font-size: 1.4rem; font-weight: 700; margin: 48px 0 16px; letter-spacing: -0.02em; }
+        .content p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; }
+        .content h2 { font-size: 1.2rem; font-weight: 700; margin: 40px 0 12px; letter-spacing: -0.02em; color: var(--text-primary); }
+        .content ul, .content ol { margin: 12px 0 16px; padding-left: 24px; }
+        .content li { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 6px; }
 
         .footer { padding: 40px 24px; border-top: 1px solid var(--border-subtle); }
         .footer-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
         .footer-copy { font-size: 0.82rem; color: var(--text-tertiary); }
         .footer-links { display: flex; gap: 24px; }
-        .footer-links a { font-size: 0.82rem; color: var(--text-tertiary); transition: color 0.2s; }
-        .footer-links a:hover { color: var(--text-secondary); }
+        .footer-links a { font-size: 0.82rem; color: var(--text-tertiary); transition: color 0.2s; text-decoration: none; }
+        .footer-links a:hover { color: var(--text-secondary); text-decoration: none; }
 
         @media (max-width: 768px) {
             .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(10,10,15,0.97); backdrop-filter: blur(20px); flex-direction: column; padding: 24px; gap: 20px; border-bottom: 1px solid var(--border-subtle); }
@@ -78,7 +76,7 @@
             <a href="/" class="nav-logo"><img src="assets/logo.png" alt="Facebook Auto Poster"></a>
             <div class="nav-links" id="navLinks">
                 <a href="/">Home</a>
-                <a href="about.html" class="active">About</a>
+                <a href="about.html">About</a>
                 <a href="instructions.html">Instructions</a>
                 <div class="nav-cta">
                     <a href="#" class="nav-cta-btn">Get Started</a>
@@ -90,22 +88,31 @@
     </nav>
 
     <div class="page-header">
-        <span class="section-label">About</span>
-        <h1>We built this because we were tired of doing it by&nbsp;hand.</h1>
+        <span class="section-label">Legal</span>
+        <h1>Refund Policy</h1>
+        <p class="last-updated">Last updated: February 2026</p>
     </div>
 
     <div class="content">
-        <p>Facebook Auto Poster started as a personal project. We'd been running Facebook pages for over a decade and got tired of the one thing that never changed: you had to show up every single day and post.</p>
+        <p>We want you to be completely satisfied with Facebook Auto Poster ("FAP"). If things don't work out, here's how refunds work.</p>
 
-        <p>That's fine when it's your passion. It's less fine when it's your fifth page and you're staring at a content calendar at 11pm on a Tuesday.</p>
+        <h2>7-Day Money Back Guarantee</h2>
+        <p>We offer a full refund within 7 days of your initial purchase, no questions asked. If FAP isn't what you expected, or you simply change your mind, just reach out and we'll process your refund.</p>
 
-        <p>So we automated it. We built a tool that scrapes content, schedules posts, and keeps pages active without anyone having to babysit them.</p>
+        <h2>How to Request a Refund</h2>
+        <p>Email us at <a href="mailto:support@facebook-auto-poster.com" style="color: #6b93ff;">support@facebook-auto-poster.com</a> with your license key or the email address you used to purchase. We'll process your refund within 2 business days.</p>
 
-        <p>Then we realized other page owners probably had the same problem. So here we are.</p>
+        <h2>What Happens After a Refund</h2>
+        <p>Once your refund is processed, your license key will be deactivated and you will no longer have access to the app. The refund will be returned to your original payment method.</p>
 
-        <p>FAP is a small company. We're not backed by venture capital. We don't have a boardroom. We just have a product that works and a name that makes people do a double take. Both of those are intentional.</p>
+        <h2>After the 7-Day Window</h2>
+        <p>After 7 days, we generally do not offer refunds. However, if you experience a technical issue that prevents you from using FAP and our support team is unable to resolve it, we'll work with you to make it right — including issuing a refund if necessary.</p>
 
-        <p>If you need help or have questions, reach out to us at <a href="mailto:support@facebook-auto-poster.com" style="color: #6b93ff;">support@facebook-auto-poster.com</a>.</p>
+        <h2>Subscription Cancellation</h2>
+        <p>You can cancel your subscription at any time. Cancellation takes effect at the end of your current billing period — you'll continue to have access until then. We do not offer partial refunds for unused time remaining in a billing period.</p>
+
+        <h2>Contact</h2>
+        <p>Questions about refunds? Reach out to <a href="mailto:support@facebook-auto-poster.com" style="color: #6b93ff;">support@facebook-auto-poster.com</a> and we'll get back to you as soon as possible.</p>
     </div>
 
     <footer class="footer">
