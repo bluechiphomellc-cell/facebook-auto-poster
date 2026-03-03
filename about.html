@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About -Facebook Auto Poster</title>
+    <title>About - Facebook Auto Poster</title>
     <meta name="description" content="Facebook Auto Poster was built to solve one problem: posting consistently to Facebook pages takes too much time.">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <meta property="og:title" content="About -Facebook Auto Poster">
+    <meta property="og:title" content="About - Facebook Auto Poster">
     <meta property="og:description" content="We built this because we were tired of doing it by hand.">
-    <meta property="og:image" content="https://facebook-auto-poster.com/assets/logo.png">
+    <meta property="og:image" content="https://facebook-auto-poster.com/assets/og-image.jpg">
     <meta property="og:url" content="https://facebook-auto-poster.com/about.html">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
@@ -50,10 +50,17 @@
         .page-header .section-label { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
         .page-header h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 20px; }
 
-        .content { max-width: 720px; padding: 0 24px 100px; margin: 0 auto; }
+        .content { max-width: 720px; padding: 0 24px 80px; margin: 0 auto; }
         .content p { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 24px; }
         .content p strong { color: var(--text-primary); font-weight: 600; }
         .content h2 { font-size: 1.4rem; font-weight: 700; margin: 48px 0 16px; letter-spacing: -0.02em; }
+
+        .founder-section { padding: 0 24px 100px; }
+        .founder-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; gap: 48px; border-top: 1px solid var(--border-subtle); padding-top: 64px; }
+        .founder-photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border-medium); }
+        .founder-label { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+        .founder-name { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
+        .founder-bio { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; margin: 0; }
 
         .footer { padding: 40px 24px; border-top: 1px solid var(--border-subtle); }
         .footer-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
@@ -69,6 +76,7 @@
             .nav-cta { width: 100%; }
             .nav-cta-btn { width: 100%; justify-content: center; }
             .footer-inner { flex-direction: column; text-align: center; }
+            .founder-inner { flex-direction: column; gap: 24px; text-align: center; }
         }
     </style>
 </head>
@@ -94,17 +102,28 @@
     </div>
 
     <div class="content">
-        <p>Facebook Auto Poster started as a personal project. We'd been running Facebook pages for over a decade and got tired of the one thing that never changed: you had to show up every single day and post.</p>
+        <p>Facebook Auto Poster started as a personal project. Running Facebook pages for years and getting tired of the one thing that never changed: you had to show up every single day and post.</p>
 
         <p>That's fine when it's your passion. It's less fine when it's your fifth page and you're staring at a content calendar at 11pm on a Tuesday.</p>
 
-        <p>So we automated it. We built a tool that scrapes content, schedules posts, and keeps pages active without anyone having to babysit them.</p>
+        <p>So we automated it. A tool that scrapes content from Reddit, Know Your Meme, and YouTube Shorts, schedules posts and Reels, and keeps pages active without anyone having to babysit them.</p>
 
         <p>Then we realized other page owners probably had the same problem. So here we are.</p>
 
-        <p>FAP is a small company. We're not backed by venture capital. We don't have a boardroom. We just have a product that works and a name that makes people do a double take. Both of those are intentional.</p>
+        <p>FAP is a small operation. Not backed by venture capital. No boardroom. Just a product that works and a name that makes people do a double take. Both of those are intentional.</p>
 
-        <p>If you need help or have questions, reach out to us at <a href="mailto:support@facebook-auto-poster.com" style="color: #6b93ff;">support@facebook-auto-poster.com</a>.</p>
+        <p>If you need help or have questions, reach out at <a href="mailto:support@facebook-auto-poster.com" style="color: #6b93ff;">support@facebook-auto-poster.com</a>.</p>
+    </div>
+
+    <div class="founder-section">
+        <div class="founder-inner">
+            <img src="brandon.jpeg" alt="Brandon" class="founder-photo">
+            <div class="founder-text">
+                <div class="founder-label">Who built this?</div>
+                <div class="founder-name">Brandon</div>
+                <p class="founder-bio">I ran Facebook meme pages for years. The daily grind of finding content, downloading it, and scheduling it manually was brutal. No tool existed that actually found content for you AND scheduled it. So I built one for myself, then figured other page operators were dealing with the exact same thing and turned it into a product.</p>
+            </div>
+        </div>
     </div>
 
     <footer class="footer">
