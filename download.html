@@ -64,10 +64,9 @@
         .download-btn:hover { background: var(--accent-blue-hover); }
         .download-version { font-size: 0.75rem; color: var(--text-tertiary); margin-top: 12px; }
 
-        .mac-notice { max-width: 620px; margin: 32px auto 0; padding: 0 24px; }
-        .mac-notice-box { background: #1a1a2a; border: 1px solid rgba(251, 146, 60, 0.3); border-radius: var(--radius-md); padding: 24px 28px; }
-        .mac-notice-title { font-size: 1rem; font-weight: 700; color: #fb923c; margin-bottom: 10px; }
-        .mac-notice-text { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.8; }
+        .mac-notice-inline { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(251, 146, 60, 0.2); text-align: left; }
+        .mac-notice-title { font-size: 0.85rem; font-weight: 700; color: #fb923c; margin-bottom: 8px; }
+        .mac-notice-text { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.8; }
         .mac-notice-text strong { color: var(--text-primary); }
 
         .setup-steps { max-width: 620px; margin: 64px auto 0; padding: 0 24px 100px; }
@@ -148,19 +147,15 @@
                 Download for Mac
             </a>
             <p class="download-version">v1.0.0</p>
-        </div>
-    </div>
-
-    <div class="mac-notice">
-        <div class="mac-notice-box">
-            <div class="mac-notice-title">Important for Mac users</div>
-            <div class="mac-notice-text">
-                macOS will block the app the first time you open it because it is not yet signed with an Apple Developer certificate. To open it:<br><br>
-                <strong>1.</strong> Try to open the app normally. macOS will show a warning.<br>
-                <strong>2.</strong> Go to <strong>System Settings &gt; Privacy &amp; Security</strong>.<br>
-                <strong>3.</strong> Scroll down and find "Facebook Auto Poster was blocked."<br>
-                <strong>4.</strong> Click <strong>Open Anyway</strong>.<br><br>
-                You only have to do this once. After that the app opens normally every time.
+            <div class="mac-notice-inline">
+                <div class="mac-notice-title">First time opening on Mac</div>
+                <div class="mac-notice-text">
+                    macOS will block the app on first launch.<br>
+                    <strong>1.</strong> Try to open the app. macOS will show a warning.<br>
+                    <strong>2.</strong> Go to <strong>System Settings &gt; Privacy &amp; Security</strong>.<br>
+                    <strong>3.</strong> Click <strong>Open Anyway</strong>.<br>
+                    You only have to do this once.
+                </div>
             </div>
         </div>
     </div>
