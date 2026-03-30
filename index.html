@@ -819,7 +819,15 @@
             width: 50%;
             height: auto;
             object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.2s;
         }
+
+        .screenshots-grid img:hover { transform: scale(1.02); }
+
+        .lightbox { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; cursor: pointer; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: var(--radius-lg); }
 
         @media (max-width: 768px) {
             .screenshots-grid { flex-direction: column; }
@@ -1168,7 +1176,20 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Screenshot lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        document.querySelectorAll('.screenshots-grid img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+            });
+        });
+        lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
     </script>
+
+    <div class="lightbox" id="lightbox"><img id="lightboxImg" src="" alt="Screenshot"></div>
 
 </body>
 </html>
