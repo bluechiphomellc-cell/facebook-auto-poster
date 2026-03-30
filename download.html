@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download - Facebook Auto Poster</title>
+    <meta name="description" content="Download Facebook Auto Poster for Mac or Windows. Enter your license key to get started.">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <meta property="og:title" content="Download - Facebook Auto Poster">
+    <meta property="og:description" content="Download Facebook Auto Poster for Mac or Windows.">
+    <meta property="og:image" content="https://facebook-auto-poster.com/assets/og-image.jpg">
+    <meta property="og:url" content="https://facebook-auto-poster.com/download.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0a0f; --bg-secondary: #0f0f18; --bg-card: #141420;
+            --border-subtle: rgba(255,255,255,0.06); --border-medium: rgba(255,255,255,0.1);
+            --text-primary: #f0f0f5; --text-secondary: #9898b0; --text-tertiary: #5e5e78;
+            --accent-blue: #4f7df9; --accent-blue-hover: #6b93ff;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
+            --max-width: 1120px;
+        }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-main); background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; background: rgba(10,10,15,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }
+        .nav-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; }
+        .nav-logo img { height: 32px; width: auto; }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a:not(.nav-cta-btn) { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; }
+        .nav-links a:not(.nav-cta-btn):hover { color: var(--text-primary); }
+        .nav-links a.active { color: var(--text-primary); }
+        .nav-cta { position: relative; }
+        .nav-cta-btn { display: inline-flex; align-items: center; padding: 8px 20px; background: var(--accent-blue); color: #fff; font-size: 0.85rem; font-weight: 600; border-radius: var(--radius-sm); transition: background 0.2s; }
+        .nav-cta-btn:hover { background: var(--accent-blue-hover); }
+        .nav-mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+        .nav-mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--text-secondary); border-radius: 2px; }
+
+        .page-header { padding: 140px 24px 40px; max-width: var(--max-width); margin: 0 auto; text-align: center; }
+        .page-header .section-label { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+        .page-header h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 16px; }
+        .page-header p { font-size: 1.05rem; color: var(--text-secondary); max-width: 560px; margin: 0 auto; }
+
+        .download-cards { display: flex; gap: 24px; max-width: 720px; margin: 48px auto 0; padding: 0 24px; }
+        .download-card { flex: 1; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 40px 32px; text-align: center; transition: border-color 0.2s; }
+        .download-card:hover { border-color: var(--border-medium); }
+        .download-icon { font-size: 3rem; margin-bottom: 16px; }
+        .download-card h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+        .download-card p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 24px; }
+        .download-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 32px; background: var(--accent-blue); color: #fff; font-size: 0.95rem; font-weight: 600; border-radius: var(--radius-sm); transition: background 0.2s; }
+        .download-btn:hover { background: var(--accent-blue-hover); }
+        .download-version { font-size: 0.75rem; color: var(--text-tertiary); margin-top: 12px; }
+
+        .setup-steps { max-width: 620px; margin: 64px auto 0; padding: 0 24px 100px; }
+        .setup-steps h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 24px; text-align: center; }
+        .step { display: flex; gap: 16px; margin-bottom: 20px; }
+        .step-num { flex-shrink: 0; width: 32px; height: 32px; background: var(--accent-blue); color: #fff; font-weight: 700; font-size: 0.85rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+        .step-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; }
+        .step-text strong { color: var(--text-primary); font-weight: 600; }
+
+        .support-note { text-align: center; padding: 0 24px 80px; }
+        .support-note p { font-size: 0.95rem; color: var(--text-tertiary); }
+        .support-note a { color: var(--accent-blue); }
+
+        .footer { padding: 40px 24px; border-top: 1px solid var(--border-subtle); }
+        .footer-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .footer-copy { font-size: 0.82rem; color: var(--text-tertiary); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { font-size: 0.82rem; color: var(--text-tertiary); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text-secondary); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(10,10,15,0.97); backdrop-filter: blur(20px); flex-direction: column; padding: 24px; gap: 20px; border-bottom: 1px solid var(--border-subtle); }
+            .nav-links.open { display: flex; }
+            .nav-mobile-toggle { display: flex; }
+            .nav-cta { width: 100%; }
+            .nav-cta-btn { width: 100%; justify-content: center; }
+            .download-cards { flex-direction: column; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><img src="assets/logo.png" alt="Facebook Auto Poster"></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/">Home</a>
+                <a href="about.html">About</a>
+                <a href="instructions.html">Instructions</a>
+                <div class="nav-cta">
+                    <a href="https://autoposter.lemonsqueezy.com/checkout/buy/e6ca31f6-2cf8-4eab-8cc9-350197666564" class="nav-cta-btn">Get Started</a>
+                </div>
+            </div>
+            <div class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <span class="section-label">Download</span>
+        <h1>Download Facebook Auto&nbsp;Poster</h1>
+        <p>Pick your platform, install, and enter the license key from your purchase confirmation to activate.</p>
+    </div>
+
+    <div class="download-cards">
+        <div class="download-card">
+            <div class="download-icon">&#63743;</div>
+            <h2>macOS</h2>
+            <p>macOS 12 Monterey or later</p>
+            <a href="downloads/FacebookAutoPoster_Mac.zip" class="download-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download for Mac
+            </a>
+            <p class="download-version">v1.0.0</p>
+        </div>
+        <div class="download-card">
+            <div class="download-icon">&#128187;</div>
+            <h2>Windows</h2>
+            <p>Windows 10 or later</p>
+            <a href="downloads/FacebookAutoPoster_Windows.zip" class="download-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download for Windows
+            </a>
+            <p class="download-version">v1.0.0</p>
+        </div>
+    </div>
+
+    <div class="setup-steps">
+        <h2>Getting started</h2>
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>Download and install.</strong> On Mac, open the .app file. On Windows, run the installer. If your OS warns you about an unrecognized app, click "More info" then "Run anyway" (totally normal for new software).</div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>Enter your license key.</strong> You received it in your purchase confirmation email from LemonSqueezy. Copy and paste it into the activation screen.</div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>Connect your Facebook pages.</strong> Click "Add Page" and log into Facebook. Select the pages you want to manage. All your pages, including Business Manager pages, will show up.</div>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-text"><strong>Start scheduling.</strong> Pick a content folder, set your post times, and hit "Schedule Next Batch." Check out the <a href="instructions.html" style="color: var(--accent-blue);">full instructions</a> for a detailed walkthrough.</div>
+        </div>
+    </div>
+
+    <div class="support-note">
+        <p>Need help? Email <a href="mailto:support@facebook-auto-poster.com">support@facebook-auto-poster.com</a></p>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-copy">&copy; 2026 Lakeside Management Group LLC. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="refund.html">Refund Policy</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
