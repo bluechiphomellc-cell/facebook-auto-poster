@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TTQ743NJ');</script>
+<!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're In - Facebook Auto Poster</title>
+    <meta name="description" content="Your free trial is active. Download Facebook Auto Poster and get started.">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0a0f; --bg-secondary: #0f0f18; --bg-card: #141420;
+            --border-subtle: rgba(255,255,255,0.06); --border-medium: rgba(255,255,255,0.1);
+            --text-primary: #f0f0f5; --text-secondary: #9898b0; --text-tertiary: #5e5e78;
+            --accent-blue: #4f7df9; --accent-blue-hover: #6b93ff; --accent-green: #34d399;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
+            --max-width: 1120px;
+        }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-main); background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; background: rgba(10,10,15,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }
+        .nav-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; }
+        .nav-logo img { height: 32px; width: auto; }
+
+        .page-header { padding: 140px 24px 20px; max-width: 720px; margin: 0 auto; text-align: center; }
+        .success-icon { font-size: 3.5rem; margin-bottom: 16px; }
+        .page-header h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px; }
+        .page-header p { font-size: 1.05rem; color: var(--text-secondary); }
+
+        .license-box { max-width: 620px; margin: 32px auto 0; padding: 0 24px; }
+        .license-card { background: var(--bg-card); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: var(--radius-lg); padding: 28px 32px; text-align: center; }
+        .license-title { font-size: 0.85rem; font-weight: 700; color: var(--accent-green); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; font-family: var(--font-mono); }
+        .license-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; }
+        .license-text strong { color: var(--text-primary); }
+
+        .download-cards { display: flex; gap: 24px; max-width: 620px; margin: 40px auto 0; padding: 0 24px; }
+        .download-card { flex: 1; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px 24px; text-align: center; }
+        .download-icon { font-size: 2.5rem; margin-bottom: 12px; }
+        .download-card h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+        .download-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 28px; background: var(--accent-blue); color: #fff; font-size: 0.9rem; font-weight: 600; border-radius: var(--radius-sm); transition: background 0.2s; }
+        .download-btn:hover { background: var(--accent-blue-hover); }
+
+        .mac-note { font-size: 0.78rem; color: var(--text-tertiary); margin-top: 12px; line-height: 1.6; }
+
+        .steps { max-width: 620px; margin: 48px auto 0; padding: 0 24px 80px; }
+        .steps h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; text-align: center; }
+        .step { display: flex; gap: 14px; margin-bottom: 16px; }
+        .step-num { flex-shrink: 0; width: 28px; height: 28px; background: var(--accent-blue); color: #fff; font-weight: 700; font-size: 0.8rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+        .step-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
+        .step-text strong { color: var(--text-primary); }
+
+        .support-note { text-align: center; padding: 0 24px 60px; }
+        .support-note p { font-size: 0.9rem; color: var(--text-tertiary); }
+        .support-note a { color: var(--accent-blue); }
+
+        .footer { padding: 40px 24px; border-top: 1px solid var(--border-subtle); }
+        .footer-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .footer-copy { font-size: 0.82rem; color: var(--text-tertiary); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { font-size: 0.82rem; color: var(--text-tertiary); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text-secondary); }
+
+        @media (max-width: 768px) {
+            .download-cards { flex-direction: column; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTQ743NJ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- GTM Conversion Event -->
+<script>
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({'event': 'trial_signup'});
+</script>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><img src="assets/logo.png" alt="Facebook Auto Poster"></a>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="success-icon">&#10003;</div>
+        <h1>You're in. Let's get you set up.</h1>
+        <p>Your 7-day free trial is active. Download the app below and use your license key to activate it.</p>
+    </div>
+
+    <div class="license-box">
+        <div class="license-card">
+            <div class="license-title">Your license key</div>
+            <div class="license-text">Check your email from LemonSqueezy for your license key. You will need it when you first open the app. <strong>Copy it and paste it into the activation screen.</strong></div>
+        </div>
+    </div>
+
+    <div class="download-cards">
+        <div class="download-card">
+            <div class="download-icon">&#128187;</div>
+            <h2>Windows</h2>
+            <a href="downloads/FacebookAutoPoster_Windows.zip" class="download-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download for Windows
+            </a>
+        </div>
+        <div class="download-card">
+            <div class="download-icon">&#63743;</div>
+            <h2>macOS</h2>
+            <a href="downloads/FacebookAutoPoster_Mac.zip" class="download-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download for Mac
+            </a>
+            <p class="mac-note">macOS will block the app on first launch. Go to System Settings &gt; Privacy &amp; Security and click "Open Anyway." One time only.</p>
+        </div>
+    </div>
+
+    <div class="steps">
+        <h2>Quick start</h2>
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>Open the app</strong> and paste your license key from the email.</div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>Click "Add Page"</strong> and log into Facebook. Select the pages you want to manage.</div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>Pick a content folder</strong>, set your post times, and hit "Schedule Next Batch." Done.</div>
+        </div>
+    </div>
+
+    <div class="support-note">
+        <p>Need help? Email <a href="mailto:support@facebook-auto-poster.com">support@facebook-auto-poster.com</a> or check the <a href="instructions.html">full instructions</a>.</p>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-copy">&copy; 2026 Lakeside Management Group LLC. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="refund.html">Refund Policy</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
