@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /thank-you.html
+Disallow: /downloads/
+
+Sitemap: https://facebook-auto-poster.com/sitemap.xml
