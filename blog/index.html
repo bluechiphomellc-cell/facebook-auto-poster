@@ -18,20 +18,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Facebook Auto Poster | Built by a Facebook Page Operator</title>
-    <meta name="description" content="Facebook Auto Poster was built by a meme page operator tired of manually posting every day. Made for page owners who run multiple pages and need to schedule in bulk.">
-    <link rel="canonical" href="https://facebook-auto-poster.com/about.html">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <meta property="og:title" content="About Facebook Auto Poster | Built by a Facebook Page Operator">
-    <meta property="og:description" content="Built by a meme page operator tired of manually posting every day. Made for page owners who run multiple pages and need to schedule in bulk.">
+    <title>Blog | Facebook Auto Poster</title>
+    <meta name="description" content="Strategies, guides, and tools for Facebook page operators. Schedule smarter, run more pages, and keep your content monetization eligibility.">
+    <link rel="canonical" href="https://facebook-auto-poster.com/blog/">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <meta property="og:title" content="Blog | Facebook Auto Poster">
+    <meta property="og:description" content="Strategies, guides, and tools for Facebook page operators.">
     <meta property="og:image" content="https://facebook-auto-poster.com/assets/og-image.jpg">
-    <meta property="og:url" content="https://facebook-auto-poster.com/about.html">
+    <meta property="og:url" content="https://facebook-auto-poster.com/blog/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Facebook Auto Poster">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="About Facebook Auto Poster | Built by a Page Operator">
-    <meta name="twitter:description" content="Built by a meme page operator tired of manually posting every day.">
-    <meta name="twitter:image" content="https://facebook-auto-poster.com/assets/og-image.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -62,25 +59,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .nav-cta { position: relative; }
         .nav-cta-btn { display: inline-flex; align-items: center; padding: 8px 20px; background: var(--accent-blue); color: #fff; font-size: 0.85rem; font-weight: 600; border-radius: var(--radius-sm); transition: background 0.2s; }
         .nav-cta-btn:hover { background: var(--accent-blue-hover); }
-        .nav-coming-soon { position: absolute; top: -8px; right: -12px; background: #fb923c; color: #000; font-size: 0.55rem; font-weight: 700; padding: 2px 6px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
         .nav-mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
         .nav-mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--text-secondary); border-radius: 2px; }
 
-        .page-header { padding: 140px 24px 60px; max-width: var(--max-width); margin: 0 auto; }
+        .page-header { padding: 140px 24px 40px; max-width: 720px; margin: 0 auto; text-align: center; }
         .page-header .section-label { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
-        .page-header h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 20px; }
+        .page-header h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 16px; }
+        .page-header p { font-size: 1.05rem; color: var(--text-secondary); }
 
-        .content { max-width: 720px; padding: 0 24px 80px; margin: 0 auto; }
-        .content p { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 24px; }
-        .content p strong { color: var(--text-primary); font-weight: 600; }
-        .content h2 { font-size: 1.4rem; font-weight: 700; margin: 48px 0 16px; letter-spacing: -0.02em; }
-
-        .founder-section { padding: 0 24px 100px; }
-        .founder-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; gap: 48px; border-top: 1px solid var(--border-subtle); padding-top: 64px; }
-        .founder-photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border-medium); }
-        .founder-label { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
-        .founder-name { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
-        .founder-bio { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; margin: 0; }
+        .post-grid { max-width: 720px; margin: 40px auto 80px; padding: 0 24px; display: flex; flex-direction: column; gap: 20px; }
+        .post-card { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 28px 32px; transition: border-color 0.2s, transform 0.2s; display: block; }
+        .post-card:hover { border-color: var(--accent-blue); transform: translateY(-2px); }
+        .post-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-tertiary); margin-bottom: 10px; }
+        .post-title { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.3; }
+        .post-excerpt { font-size: 0.98rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
+        .post-read-more { font-size: 0.88rem; font-weight: 600; color: var(--accent-blue); }
+        .empty-state { text-align: center; color: var(--text-tertiary); padding: 60px 0; }
 
         .footer { padding: 40px 24px; border-top: 1px solid var(--border-subtle); }
         .footer-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
@@ -95,8 +89,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .nav-mobile-toggle { display: flex; }
             .nav-cta { width: 100%; }
             .nav-cta-btn { width: 100%; justify-content: center; }
+            .post-card { padding: 22px 24px; }
             .footer-inner { flex-direction: column; text-align: center; }
-            .founder-inner { flex-direction: column; gap: 24px; text-align: center; }
         }
     </style>
 </head>
@@ -107,13 +101,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     <nav class="nav">
         <div class="nav-inner">
-            <a href="/" class="nav-logo"><img src="assets/logo.png" alt="Facebook Auto Poster"></a>
+            <a href="/" class="nav-logo"><img src="/assets/logo.png" alt="Facebook Auto Poster"></a>
             <div class="nav-links" id="navLinks">
                 <a href="/">Home</a>
-                <a href="about.html" class="active">About</a>
-                <a href="instructions.html">Instructions</a>
-                <a href="/blog/">Blog</a>
-                <a href="download.html">Download</a>
+                <a href="/about.html">About</a>
+                <a href="/instructions.html">Instructions</a>
+                <a href="/blog/" class="active">Blog</a>
+                <a href="/download.html">Download</a>
                 <div class="nav-cta">
                     <a href="https://autoposter.lemonsqueezy.com/checkout/buy/e6ca31f6-2cf8-4eab-8cc9-350197666564" class="nav-cta-btn">Get Started</a>
                 </div>
@@ -123,43 +117,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </nav>
 
     <div class="page-header">
-        <span class="section-label">About</span>
-        <h1>We built this because we were tired of doing it by&nbsp;hand.</h1>
+        <span class="section-label">Blog</span>
+        <h1>Strategies for Facebook page operators</h1>
+        <p>Guides, comparisons, and honest writing about running multiple Facebook pages without losing your mind.</p>
     </div>
 
-    <div class="content">
-        <p>Facebook Auto Poster started as a personal project. Running Facebook pages for years and getting tired of the one thing that never changed: you had to show up every single day and post.</p>
-
-        <p>That's fine when it's your passion. It's less fine when it's your fifth page and you're staring at a content calendar at 11pm on a Tuesday.</p>
-
-        <p>So we automated it. A tool that scrapes content from Reddit, Know Your Meme, and YouTube Shorts, schedules posts and Reels, and keeps pages active without anyone having to babysit them.</p>
-
-        <p>Then we realized other page owners probably had the same problem. So here we are.</p>
-
-        <p>FAP is a small operation. Not backed by venture capital. No boardroom. Just a product that works and a name that makes people do a double take. Both of those are intentional.</p>
-
-        <p>If you need help or have questions, reach out at <a href="mailto:support@facebook-auto-poster.com" style="color: #6b93ff;">support@facebook-auto-poster.com</a>.</p>
-    </div>
-
-    <div class="founder-section">
-        <div class="founder-inner">
-            <img src="brandon.jpeg" alt="Brandon, founder of Facebook Auto Poster" class="founder-photo">
-            <div class="founder-text">
-                <div class="founder-label">Who built this?</div>
-                <div class="founder-name">Brandon</div>
-                <p class="founder-bio">I ran Facebook meme pages for years. The daily grind of finding content, downloading it, and scheduling it manually was brutal. No tool existed that actually found content for you AND scheduled it. So I built one for myself, then figured other page operators were dealing with the exact same thing and turned it into a product.</p>
-            </div>
-        </div>
+    <div class="post-grid">
+        <a href="/blog/posts/schedule-posts-multiple-facebook-pages.html" class="post-card">
+            <div class="post-meta">June 01, 2026 &middot; 7 min read</div>
+            <h2 class="post-title">How to Schedule Posts to Multiple Facebook Pages at Once</h2>
+            <p class="post-excerpt">Practical guide to batch-scheduling content across multiple Facebook pages in 2026. Tools, workflows, and an honest assessment of when automation actually pays off.</p>
+            <span class="post-read-more">Read post &rarr;</span>
+        </a>
     </div>
 
     <footer class="footer">
         <div class="footer-inner">
             <span class="footer-copy">&copy; 2026 Lakeside Management Group LLC. All rights reserved.</span>
             <div class="footer-links">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="refund.html">Refund Policy</a>
+                <a href="/privacy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms of Service</a>
+                <a href="/refund.html">Refund Policy</a>
             </div>
         </div>
     </footer>
 </body>
+</html>

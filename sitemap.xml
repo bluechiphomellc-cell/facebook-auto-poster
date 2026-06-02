@@ -21,6 +21,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://facebook-auto-poster.com/blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://facebook-auto-poster.com/terms.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -34,5 +39,11 @@
     <loc>https://facebook-auto-poster.com/refund.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://facebook-auto-poster.com/blog/posts/schedule-posts-multiple-facebook-pages.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

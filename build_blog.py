@@ -1,0 +1,253 @@
+#!/usr/bin/env python3
+"""Build the blog index page and update sitemap based on post publish dates.
+
+Reads every HTML file in blog/posts/, extracts metadata from <meta> tags,
+filters to published posts (publish_date <= today), and writes out:
+  - blog/index.html (lists published posts, newest first)
+  - sitemap.xml (main pages + published blog posts)
+
+Run daily via GitHub Actions cron.
+"""
+
+import datetime
+import re
+from pathlib import Path
+
+WEBSITE_DIR = Path(__file__).parent
+POSTS_DIR = WEBSITE_DIR / "blog" / "posts"
+BLOG_INDEX = WEBSITE_DIR / "blog" / "index.html"
+SITEMAP = WEBSITE_DIR / "sitemap.xml"
+TODAY = datetime.date.today()
+
+CORE_PAGES = [
+    ("https://facebook-auto-poster.com/", "weekly", "1.0"),
+    ("https://facebook-auto-poster.com/download.html", "weekly", "0.9"),
+    ("https://facebook-auto-poster.com/instructions.html", "monthly", "0.8"),
+    ("https://facebook-auto-poster.com/about.html", "monthly", "0.6"),
+    ("https://facebook-auto-poster.com/blog/", "weekly", "0.8"),
+    ("https://facebook-auto-poster.com/terms.html", "yearly", "0.3"),
+    ("https://facebook-auto-poster.com/privacy.html", "yearly", "0.3"),
+    ("https://facebook-auto-poster.com/refund.html", "yearly", "0.3"),
+]
+
+
+def parse_post(filepath):
+    content = filepath.read_text()
+    title_match = re.search(r"<title>([^<]+)</title>", content)
+    date_match = re.search(
+        r'<meta name="article:published_time" content="([^"]+)"', content
+    )
+    excerpt_match = re.search(r'<meta name="description" content="([^"]+)"', content)
+    read_time_match = re.search(r'<meta name="read-time" content="([^"]+)"', content)
+
+    title = title_match.group(1).split(" | ")[0] if title_match else filepath.stem
+    publish_date = (
+        datetime.date.fromisoformat(date_match.group(1)) if date_match else TODAY
+    )
+    excerpt = excerpt_match.group(1) if excerpt_match else ""
+    read_time = read_time_match.group(1) if read_time_match else "5 min read"
+
+    return {
+        "title": title,
+        "publish_date": publish_date,
+        "excerpt": excerpt,
+        "read_time": read_time,
+        "slug": filepath.stem,
+        "url": f"/blog/posts/{filepath.stem}.html",
+        "is_published": publish_date <= TODAY,
+    }
+
+
+def render_index(published_posts):
+    cards_html = "\n".join(
+        f"""        <a href="{p['url']}" class="post-card">
+            <div class="post-meta">{p['publish_date'].strftime('%B %d, %Y')} &middot; {p['read_time']}</div>
+            <h2 class="post-title">{p['title']}</h2>
+            <p class="post-excerpt">{p['excerpt']}</p>
+            <span class="post-read-more">Read post &rarr;</span>
+        </a>"""
+        for p in published_posts
+    )
+
+    if not cards_html:
+        cards_html = '        <p class="empty-state">No posts published yet. Check back soon.</p>'
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':
+new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+}})(window,document,'script','dataLayer','GTM-TTQ743NJ');</script>
+<!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18052201570"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', 'AW-18052201570');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Facebook Auto Poster</title>
+    <meta name="description" content="Strategies, guides, and tools for Facebook page operators. Schedule smarter, run more pages, and keep your content monetization eligibility.">
+    <link rel="canonical" href="https://facebook-auto-poster.com/blog/">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <meta property="og:title" content="Blog | Facebook Auto Poster">
+    <meta property="og:description" content="Strategies, guides, and tools for Facebook page operators.">
+    <meta property="og:image" content="https://facebook-auto-poster.com/assets/og-image.jpg">
+    <meta property="og:url" content="https://facebook-auto-poster.com/blog/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Facebook Auto Poster">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {{ margin: 0; padding: 0; box-sizing: border-box; }}
+        :root {{
+            --bg-primary: #0a0a0f; --bg-secondary: #0f0f18; --bg-card: #141420;
+            --border-subtle: rgba(255,255,255,0.06); --border-medium: rgba(255,255,255,0.1);
+            --text-primary: #f0f0f5; --text-secondary: #9898b0; --text-tertiary: #5e5e78;
+            --accent-blue: #4f7df9; --accent-blue-hover: #6b93ff;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
+            --max-width: 1120px;
+        }}
+        html {{ scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }}
+        body {{ font-family: var(--font-main); background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }}
+        a {{ color: inherit; text-decoration: none; }}
+
+        .nav {{ position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; background: rgba(10,10,15,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }}
+        .nav-inner {{ max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }}
+        .nav-logo {{ display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; }}
+        .nav-logo img {{ height: 32px; width: auto; }}
+        .nav-links {{ display: flex; align-items: center; gap: 32px; }}
+        .nav-links a:not(.nav-cta-btn) {{ font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; }}
+        .nav-links a:not(.nav-cta-btn):hover {{ color: var(--text-primary); }}
+        .nav-links a.active {{ color: var(--text-primary); }}
+        .nav-cta {{ position: relative; }}
+        .nav-cta-btn {{ display: inline-flex; align-items: center; padding: 8px 20px; background: var(--accent-blue); color: #fff; font-size: 0.85rem; font-weight: 600; border-radius: var(--radius-sm); transition: background 0.2s; }}
+        .nav-cta-btn:hover {{ background: var(--accent-blue-hover); }}
+        .nav-mobile-toggle {{ display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }}
+        .nav-mobile-toggle span {{ display: block; width: 22px; height: 2px; background: var(--text-secondary); border-radius: 2px; }}
+
+        .page-header {{ padding: 140px 24px 40px; max-width: 720px; margin: 0 auto; text-align: center; }}
+        .page-header .section-label {{ font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }}
+        .page-header h1 {{ font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 16px; }}
+        .page-header p {{ font-size: 1.05rem; color: var(--text-secondary); }}
+
+        .post-grid {{ max-width: 720px; margin: 40px auto 80px; padding: 0 24px; display: flex; flex-direction: column; gap: 20px; }}
+        .post-card {{ background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 28px 32px; transition: border-color 0.2s, transform 0.2s; display: block; }}
+        .post-card:hover {{ border-color: var(--accent-blue); transform: translateY(-2px); }}
+        .post-meta {{ font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-tertiary); margin-bottom: 10px; }}
+        .post-title {{ font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.3; }}
+        .post-excerpt {{ font-size: 0.98rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }}
+        .post-read-more {{ font-size: 0.88rem; font-weight: 600; color: var(--accent-blue); }}
+        .empty-state {{ text-align: center; color: var(--text-tertiary); padding: 60px 0; }}
+
+        .footer {{ padding: 40px 24px; border-top: 1px solid var(--border-subtle); }}
+        .footer-inner {{ max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }}
+        .footer-copy {{ font-size: 0.82rem; color: var(--text-tertiary); }}
+        .footer-links {{ display: flex; gap: 24px; }}
+        .footer-links a {{ font-size: 0.82rem; color: var(--text-tertiary); transition: color 0.2s; }}
+        .footer-links a:hover {{ color: var(--text-secondary); }}
+
+        @media (max-width: 768px) {{
+            .nav-links {{ display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(10,10,15,0.97); backdrop-filter: blur(20px); flex-direction: column; padding: 24px; gap: 20px; border-bottom: 1px solid var(--border-subtle); }}
+            .nav-links.open {{ display: flex; }}
+            .nav-mobile-toggle {{ display: flex; }}
+            .nav-cta {{ width: 100%; }}
+            .nav-cta-btn {{ width: 100%; justify-content: center; }}
+            .post-card {{ padding: 22px 24px; }}
+            .footer-inner {{ flex-direction: column; text-align: center; }}
+        }}
+    </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTQ743NJ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><img src="/assets/logo.png" alt="Facebook Auto Poster"></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/">Home</a>
+                <a href="/about.html">About</a>
+                <a href="/instructions.html">Instructions</a>
+                <a href="/blog/" class="active">Blog</a>
+                <a href="/download.html">Download</a>
+                <div class="nav-cta">
+                    <a href="https://autoposter.lemonsqueezy.com/checkout/buy/e6ca31f6-2cf8-4eab-8cc9-350197666564" class="nav-cta-btn">Get Started</a>
+                </div>
+            </div>
+            <div class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <span class="section-label">Blog</span>
+        <h1>Strategies for Facebook page operators</h1>
+        <p>Guides, comparisons, and honest writing about running multiple Facebook pages without losing your mind.</p>
+    </div>
+
+    <div class="post-grid">
+{cards_html}
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-copy">&copy; 2026 Lakeside Management Group LLC. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="/privacy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms of Service</a>
+                <a href="/refund.html">Refund Policy</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+"""
+
+
+def render_sitemap(published_posts):
+    urls = []
+    for url, freq, prio in CORE_PAGES:
+        urls.append(
+            f"  <url>\n    <loc>{url}</loc>\n    <changefreq>{freq}</changefreq>\n    <priority>{prio}</priority>\n  </url>"
+        )
+    for p in published_posts:
+        full_url = f"https://facebook-auto-poster.com{p['url']}"
+        urls.append(
+            f"  <url>\n    <loc>{full_url}</loc>\n    <lastmod>{p['publish_date'].isoformat()}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>"
+        )
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(urls)
+        + "\n</urlset>\n"
+    )
+
+
+def main():
+    posts = [parse_post(p) for p in sorted(POSTS_DIR.glob("*.html"))]
+    published = sorted(
+        [p for p in posts if p["is_published"]],
+        key=lambda p: p["publish_date"],
+        reverse=True,
+    )
+
+    BLOG_INDEX.write_text(render_index(published))
+    SITEMAP.write_text(render_sitemap(published))
+
+    print(f"Built blog index: {len(published)} published posts")
+    print(f"Built sitemap with {len(CORE_PAGES)} core pages + {len(published)} posts")
+
+
+if __name__ == "__main__":
+    main()

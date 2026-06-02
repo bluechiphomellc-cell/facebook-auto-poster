@@ -1,0 +1,35 @@
+name: Publish scheduled blog posts
+
+on:
+  schedule:
+    # Daily at 14:00 UTC (10am EST)
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Rebuild blog index and sitemap
+        run: python3 build_blog.py
+
+      - name: Commit changes if any
+        run: |
+          git config user.name "blog-publisher"
+          git config user.email "blog@facebook-auto-poster.com"
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git add blog/index.html sitemap.xml
+            git commit -m "Auto-publish scheduled blog posts"
+            git push
+          else
+            echo "No changes to publish"
+          fi
